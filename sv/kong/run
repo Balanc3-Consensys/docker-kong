@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source /etc/envvars
+
+export KONG_CLUSTER_ADVERTISE="`ip route get 1 | awk '{print $NF;exit}'`:7946"
+kong migrations up
+
+exec 2>&1
+exec kong start -v
