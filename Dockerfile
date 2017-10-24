@@ -15,16 +15,6 @@ CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
 
 # Utilities
 RUN apt-get install -y --no-install-recommends vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc iproute python ssh rsync gettext-base
-<<<<<<< HEAD
-
-#Install Oracle Java 8
-RUN add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer && \
-    apt install oracle-java8-unlimited-jce-policy && \
-    rm -r /var/cache/oracle-jdk8-installer
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #dependencies
 RUN apt-get install -y openssl libpcre3 procps perl
@@ -34,14 +24,7 @@ RUN curl -L https://bintray.com/kong/kong-community-edition-deb/download_file?fi
     dpkg -i kong*.deb && \
     rm kong*.deb
 
-#RUN echo "deb https://kong.bintray.com/kong-community-edition-deb xenial main" > /etc/apt/sources.list.d/kong.list
-#RUN apt-get install -y apt-transport-https
-#RUN apt-get update
-#RUN apt-get install -y --allow-unauthenticated kong-community-edition
-
 COPY kong.conf /etc/kong/kong.conf
-=======
->>>>>>> b0915df1f840385e019c2eac194908ec2315fffd
 
 # Add runit services
 COPY sv /etc/service 
