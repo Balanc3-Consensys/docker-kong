@@ -24,6 +24,14 @@ RUN curl -L https://bintray.com/kong/kong-community-edition-deb/download_file?fi
     dpkg -i kong*.deb && \
     rm kong*.deb
 
+# Nodejs
+RUN wget -O - https://nodejs.org/dist/v8.7.0/node-v8.7.0-linux-x64.tar.gz | tar xz
+RUN mv node* node
+ENV PATH=$PATH:/node/bin
+
+#kongfig
+RUN npm install -g kongfig
+
 COPY kong.conf /etc/kong/kong.conf
 
 # Add runit services
