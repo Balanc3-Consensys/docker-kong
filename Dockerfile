@@ -20,12 +20,12 @@ RUN apt-get install -y --no-install-recommends vim less net-tools inetutils-ping
 RUN apt-get install -y openssl libpcre3 procps perl
 
 #kong
-RUN curl -L https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.0.xenial.all.deb > kong.deb && \
+RUN curl -L https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.11.2.xenial.all.deb > kong.deb && \
     dpkg -i kong*.deb && \
     rm kong*.deb
 
 # Nodejs
-RUN wget -O - https://nodejs.org/dist/v8.7.0/node-v8.7.0-linux-x64.tar.gz | tar xz
+RUN wget -O - https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-x64.tar.gz | tar xz
 RUN mv node* node
 ENV PATH=$PATH:/node/bin
 
