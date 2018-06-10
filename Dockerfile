@@ -11,9 +11,7 @@ ENV LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # Runit
 RUN apt-get install -y --no-install-recommends runit
-# There is no logging outout in Kong right now. Trying to run it directly so I can see what's going on.
-# Just starting an empty while loop so I can run it using other options without having to re-build every time...
-CMD bash -c 'export > /etc/envvars && while true; do sleep 10; done'
+CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
 
 # Utilities
 RUN apt-get install -y --no-install-recommends vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc iproute python ssh rsync gettext-base
