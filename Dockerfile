@@ -11,7 +11,8 @@ ENV LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # Runit
 RUN apt-get install -y --no-install-recommends runit
-CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
+# There is no logging outout in Kong right now. Trying to run it directly so I can see what's going on.
+CMD bash -c 'export > /etc/envvars && /etc/service/kong/run'
 
 # Utilities
 RUN apt-get install -y --no-install-recommends vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc iproute python ssh rsync gettext-base
